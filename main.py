@@ -92,7 +92,7 @@ while True:
         janelagameall.set_title("Space Invaders")
         while True:
             game.run(background,teclado,janelagameall,navinha)
-            game.shoot(background,teclado,janelagameall,shoot,navinha)
+            game.tiro(background,teclado,janelagameall,shoot,navinha)
             
             if teclado.key_pressed("ESC"):
                 break

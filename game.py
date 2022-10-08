@@ -6,22 +6,22 @@ janela_altura = 1000
 vx = 400
 vy = 400
 
-def run(background,teclado,janela,spaceship):
+def run(background,teclado,janela,navinha):
     background.draw()
-    spaceship.draw()
-    if teclado.key_pressed("A") and spaceship.x > 10:
-        spaceship.x = spaceship.x - vx * janela.delta_time()
-    if teclado.key_pressed("D") and spaceship.x /2 < 290:
-        spaceship.x = spaceship.x + vx * janela.delta_time()
+    navinha.draw()
+    if teclado.key_pressed("A") and navinha.x > 10:
+        navinha.x = navinha.x - vx * janela.delta_time()
+    if teclado.key_pressed("D") and navinha.x /2 < 290:
+        navinha.x = navinha.x + vx * janela.delta_time()
 
-def shoot(background,teclado,janela,shoot,spaceship):
+def tiro(background,teclado,janela,tiro,navinha):
     if teclado.key_pressed("SPACE"):
-        shoot.x = spaceship.x + shoot.width * 2 + spaceship.width/2 - 20
-        shoot.y = janela_altura - spaceship.height - shoot.height
+        tiro.x = navinha.x + tiro.width * 2 + navinha.width/2 - 20
+        tiro.y = janela_altura - navinha.height - tiro.height
         while True:
-            run(background,teclado,janela,spaceship)
-            shoot.draw()
-            shoot.y = shoot.y - vy * janela.delta_time()
-            if shoot.y < 0:
+            run(background,teclado,janela,navinha)
+            tiro.draw()
+            tiro.y = tiro.y - vy * janela.delta_time()
+            if tiro.y < 0:
                 break
             janela.update()
