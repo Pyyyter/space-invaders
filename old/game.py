@@ -13,15 +13,20 @@ def run(background,teclado,janela,navinha):
         navinha.x = navinha.x - vx * janela.delta_time()
     if teclado.key_pressed("D") and navinha.x /2 < 290:
         navinha.x = navinha.x + vx * janela.delta_time()
-
-def tiro(background,teclado,janela,tiro,navinha):
+while true
+def tiro(background,teclado,janela,tiro,navinha, vetor):
     if teclado.key_pressed("SPACE"):
-        tiro.x = navinha.x + tiro.width * 2 + navinha.width/2 - 20
-        tiro.y = janela_altura - navinha.height - tiro.height
-        while True:
-            run(background,teclado,janela,navinha)
-            tiro.draw()
-            tiro.y = tiro.y - vy * janela.delta_time()
-            if tiro.y < 0:
-                break
-            janela.update()
+        tiro sdkajsdkjaf
+        posição tiro asdkjaskjfkajk
+        vetor.append(tiro)
+        
+    for i in vetor:
+        i.y = i.y - (vy-385) * janela.delta_time()
+        i.draw()
+        if i.y <= 0:
+            vetor.pop(i)
+        
+    janela.update()
+
+        # if vetor[i].y < 0:
+        #     vetor.pop(i)
