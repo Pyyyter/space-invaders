@@ -16,8 +16,6 @@ def run(background,teclado,janela,navinha):
 while true
 def tiro(background,teclado,janela,tiro,navinha, vetor):
     if teclado.key_pressed("SPACE"):
-        tiro sdkajsdkjaf
-        posição tiro asdkjaskjfkajk
         vetor.append(tiro)
         
     for i in vetor:

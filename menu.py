@@ -7,9 +7,9 @@ import dificuldade
 import main
 
 #janela 
-janela = Window(1280, 720) 
+janela = Window(700, 1000) 
 janela.set_title("Space Invaders")
-fundo = Sprite("assets\wall.jpg")
+fundo = Sprite("assets\wall3.png")
 
 #sprites
 botao_play = Sprite("assets\Jogar.png")
@@ -31,7 +31,7 @@ while True:
     botao_play.draw()
     botao_dificuldade.draw()
     botao_sair.draw()
-    janela.draw_text("Space Invaders", janela.width/2 - 310, 80, size=100, color=([255, 255, 255]), bold=False)
+    janela.draw_text("Empire Enemies", janela.width/2 - 310, 80, size=100, color=([255, 255, 255]), bold=False)
 
 
 

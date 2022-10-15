@@ -7,17 +7,17 @@ import menu
 import funcoes
 
 
-
 def jogo():
     lista_tiro = []
     delay = 0
-
-    janela_j = Window(1280,720)
+    v = []  
+    contador = 0
+    janela_j = Window(700,1000)
 
     #sprites
     nave = Sprite("assets/xwing.png")
     background = Sprite("assets\wall.jpg")
-    nave.set_position(1280/2 - nave.width ,600)
+    nave.set_position(350 - nave.width/2 ,850)
 
     #Usuario
     teclado = Window.get_keyboard()
@@ -34,12 +34,12 @@ def jogo():
 
         if teclado.key_pressed("LEFT") and nave.x >= 0:
             nave.x -= velx * janela_j.delta_time()
-        elif teclado.key_pressed("RIGHT") and nave.x <= 1280 - nave.width:
+        elif teclado.key_pressed("RIGHT") and nave.x <= 700 - nave.width:
             nave.x += velx * janela_j.delta_time()
 
 
         delay = funcoes.piupiu(nave, background, janela_j, teclado, velx , vely, lista_tiro, delay)
-
+        contador  = funcoes.printaMatriz(3, 2, v, contador)
         if teclado.key_pressed("ESC"):
             janela_j.close() 
 
