@@ -19,8 +19,8 @@ def jogo():
     janela_j = Window(1920,1080)
     conta2 = 0
     mixer.init()
-    linha = 1
-    coluna = 2
+    linha = 4
+    coluna = 10
 
     #sprites
     nave = Sprite("assets/xwing.png")

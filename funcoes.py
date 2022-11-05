@@ -24,12 +24,10 @@ def piupiu(nave, background, janela, teclado, velx , vely, lista, delay):
 
 
 
-
-
 def criartiro(lista, nave):
     tiro = Sprite("assets/shoot.png")
-    tiro.x = nave.x + 39
-    tiro.y = nave.y - nave.height/2
+    tiro.x = nave.x + nave.width/2 - 5
+    tiro.y = nave.y - 5
     lista.append(tiro)
 
 def criaMatriz(linha,coluna,lista):
@@ -42,8 +40,6 @@ def criaMatriz(linha,coluna,lista):
             list.append(alien)
         lista.append(list)
 
-
-
 def movematriz(linha, coluna, lista, janela, vel, nave):
     colidiu = False
     for i in range(linha):
@@ -51,7 +47,10 @@ def movematriz(linha, coluna, lista, janela, vel, nave):
             if lista[i][j] == 0:
                 pass
             else:
-                lista[i][j].x += 10*vel
+                if lista[i][j].y >= janela.height/2:
+                    lista[i][j].x += 20*vel
+                else:
+                    lista[i][j].x += 10*vel
                 if (lista[i][j].x >= janela.width - 90 or lista[i][j].x <= 0):
                     colidiu = True
                 if colidiu:
