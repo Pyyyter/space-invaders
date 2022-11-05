@@ -19,8 +19,8 @@ def jogo():
     janela_j = Window(1920,1080)
     conta2 = 0
     mixer.init()
-    linha = 4
-    coluna = 10
+    linha = 1
+    coluna = 2
 
     #sprites
     nave = Sprite("assets/xwing.png")
@@ -30,11 +30,12 @@ def jogo():
     #Usuario
     teclado = Window.get_keyboard()
     click = Window.get_mouse()
-
+    total = linha * coluna
     #variaveis
     velx = 300
     vely = 300
-    veli = 60
+    veli = 0.5
+    pontos = 0
     mixer.music.load('assets/game.mp3')
     mixer.music.set_volume(0.2)
     mixer.music.play()
@@ -44,35 +45,36 @@ def jogo():
         nave.draw()
 
 
-
+        #Mover nave
         if teclado.key_pressed("LEFT") and nave.x >= 0:
             nave.x -= velx * janela_j.delta_time()
         elif teclado.key_pressed("RIGHT") and nave.x <= janela_j.width - nave.width:
             nave.x += velx * janela_j.delta_time()
-
-
-
-        if conta2 == 0:
-            funcoes.criaMatriz(coluna, linha, v)
-            conta2 += 1
-
-
-
+        # Atirar
         delay = funcoes.piupiu(nave, background, janela_j, teclado, velx , vely, lista_tiro, delay)
 
 
 
-        crash  = funcoes.printaMatriz(coluna, linha, v, nave, crash)
-
-
-
-        if contamove >= 15 :
+        # Criar matriz
+        if conta2 == 0:
+            funcoes.criaMatriz(coluna, linha, v)
+            conta2 += 1
+        
+        
+        # Mover matriz
+        if contamove >= 3 :
             veli = funcoes.movematriz(coluna, linha, v, janela_j, veli, nave)
             contamove = 0
         contamove += 1
-
         
-
+        
+        # Printar matriz e checar derrota
+        crash, pontos  = funcoes.printaMatriz(coluna, linha, v, nave, crash, lista_tiro, pontos)
+        if pontos == total:
+            conta2 = 0
+        
+        
+        # Finalizar jogo, se derrotado
         if crash:
                 background = Sprite("assets/fail.png")
                 mixer.music.load('assets/loss.mp3')
@@ -81,12 +83,12 @@ def jogo():
                 while True:
                     background.draw()
                     janela_j.update()
+                    if teclado.key_pressed("ESC"):
+                        janela_j.close()
+
+
 
 
         if teclado.key_pressed("ESC"):
             janela_j.close()
-
-
-
-
         janela_j.update()

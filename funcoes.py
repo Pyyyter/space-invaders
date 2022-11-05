@@ -9,9 +9,8 @@ import main
 
 def piupiu(nave, background, janela, teclado, velx , vely, lista, delay):
     if teclado.key_pressed("SPACE") and delay == 0:
-        print("espaço funcionando")
         criartiro(lista, nave)
-        delay = 300
+        delay = 100
     #tem tiro pra disparar
     if len(lista) > 0:
         for tiro in lista:
@@ -49,20 +48,37 @@ def movematriz(linha, coluna, lista, janela, vel, nave):
     colidiu = False
     for i in range(linha):
         for j in range(coluna):
-            lista[i][j].x += 10*vel
-            if (lista[i][j].x >= janela.width - 90 or lista[i][j].x <= 0):
-                colidiu = True
-    if colidiu == True:
-        vel = vel*(-1)
-        for i in range(linha):
-            for j in range(coluna):
-                lista[i][j].y += 30
+            if lista[i][j] == 0:
+                pass
+            else:
+                lista[i][j].x += 10*vel
+                if (lista[i][j].x >= janela.width - 90 or lista[i][j].x <= 0):
+                    colidiu = True
+                if colidiu:
+                    vel = vel*(-1)
+                    for i in range(linha):
+                        for j in range(coluna):
+                            if lista[i][j] == 0:
+                                pass
+                            else:
+                                lista[i][j].y += 30
+                    colidiu = False    
     return vel
 
-def printaMatriz(linha, coluna, lista, nave, crash):
+def printaMatriz(linha, coluna, lista, nave, crash, vetortiro, pontos):
     for i in range(linha):
         for j in range(coluna):
-            lista[i][j].draw()
-            if Collision.perfect_collision(lista[i][j], nave):
-                crash = True
-                return crash 
+            if lista[i][j] == 0:
+                pass
+            else:
+                lista[i][j].draw()
+                if Collision.perfect_collision(lista[i][j], nave):
+                        crash = True
+                for k in range(len(vetortiro)):
+                    if Collision.perfect_collision(lista[i][j], vetortiro[k]):
+                        lista[i][j] = 0
+                        vetortiro.pop(k)
+                        pontos += 1
+                        print(pontos)
+                        break
+    return crash, pontos
