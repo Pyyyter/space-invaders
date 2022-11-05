@@ -30,8 +30,10 @@ def jogo():
     #Usuario
     teclado = Window.get_keyboard()
     click = Window.get_mouse()
-    total = linha * coluna
+   
     #variaveis
+    total = linha * coluna
+    totalpontos = linha * coluna
     velx = 300
     vely = 300
     veli = 0.5
@@ -70,8 +72,10 @@ def jogo():
         
         # Printar matriz e checar derrota
         crash, pontos  = funcoes.printaMatriz(coluna, linha, v, nave, crash, lista_tiro, pontos)
-        if pontos == total:
+        if pontos >= totalpontos:
             conta2 = 0
+            v = []
+            totalpontos += total
         
         
         # Finalizar jogo, se derrotado
