@@ -7,9 +7,9 @@ import dificuldade
 import main
 
 #janela 
-janela = Window(700, 1000) 
+janela = Window(1920, 1080) 
 janela.set_title("Space Invaders")
-fundo = Sprite("assets\wall3.png")
+fundo = Sprite("assets\wall.jpg")
 
 #sprites
 botao_play = Sprite("assets\Jogar.png")
@@ -17,9 +17,9 @@ botao_dificuldade = Sprite("assets\Dificuldade.png")
 botao_sair = Sprite("assets\Sair.png")
 
 #posiçoes 
-botao_play.set_position(janela.width/2 - botao_play.width/2, 250)
-botao_dificuldade.set_position(janela.width/2 - botao_play.width/2, 350)
-botao_sair.set_position(janela.width/2 - botao_sair.width/2, 450)
+botao_play.set_position(janela.width/2 - botao_play.width/2, 650)
+botao_dificuldade.set_position(janela.width/2 - botao_play.width/2, 750)
+botao_sair.set_position(janela.width/2 - botao_sair.width/2, 850)
 
 #Usuario
 teclado = Window.get_keyboard()
@@ -31,9 +31,6 @@ while True:
     botao_play.draw()
     botao_dificuldade.draw()
     botao_sair.draw()
-    janela.draw_text("Empire Enemies", janela.width/2 - 310, 80, size=100, color=([255, 255, 255]), bold=False)
-
-
 
     #botoes
     if click.is_button_pressed(True) and click.is_over_object(botao_play):
