@@ -7,14 +7,16 @@ import dificuldade
 import main
 
 #janela 
-janela = Window(1920, 1080) 
+width = 1920
+height = 1080
+janela = Window(width, height) 
 janela.set_title("Space Invaders")
-fundo = Sprite("assets\wall.jpg")
+fundo = Sprite("assets/wall.jpg")
 
 #sprites
-botao_play = Sprite("assets\Jogar.png")
-botao_dificuldade = Sprite("assets\Dificuldade.png")
-botao_sair = Sprite("assets\Sair.png")
+botao_play = Sprite("assets/Jogar.png")
+botao_dificuldade = Sprite("assets/Dificuldade.png")
+botao_sair = Sprite("assets/Sair.png")
 
 #posiçoes 
 botao_play.set_position(janela.width/2 - botao_play.width/2, 650)
@@ -37,7 +39,7 @@ while True:
         main.jogo()
 
     if click.is_button_pressed(True) and click.is_over_object(botao_dificuldade):
-        dificuldade.configuracoes()
+        dificuldade = dificuldade.configuracoes(width, height)
 
     if click.is_button_pressed(True) and click.is_over_object(botao_sair):
         janela.close()
@@ -45,5 +47,4 @@ while True:
     if teclado.key_pressed("ESC"):
         janela.close()
 
-
-    janela.update() 
+    janela.update()

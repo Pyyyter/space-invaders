@@ -11,6 +11,8 @@ import funcoes
 
 
 def jogo():
+    janela_altura = 1080
+    janela_largura = 1920
     lista_tiro = []
     delay = 0
     v = []  
@@ -24,16 +26,17 @@ def jogo():
 
     #sprites
     nave = Sprite("assets/xwing.png")
-    background = Sprite("assets\walljogo.png")
+    background = Sprite("assets/walljogo.png")
     nave.set_position(janela_j.width/2 - nave.width/2 ,950)
 
     #Usuario
     teclado = Window.get_keyboard()
     click = Window.get_mouse()
-   
+    listatiro = []
     #variaveis
     total = linha * coluna
     totalpontos = linha * coluna
+    velmonstro = 0.5
     velx = 300
     vely = 300
     veli = 0.5
@@ -41,7 +44,11 @@ def jogo():
     mixer.music.load('assets/game.mp3')
     mixer.music.set_volume(0.2)
     mixer.music.play()
-
+    cooldown2 = 0
+    cooldown = 0
+    lifes = 1
+    invincible = False
+    countinvincible = 120
     while True:
         background.draw()
         nave.draw()
@@ -65,7 +72,7 @@ def jogo():
         
         # Mover matriz
         if contamove >= 3 :
-            veli = funcoes.movematriz(coluna, linha, v, janela_j, veli, nave)
+            velmonstro = funcoes.movematriz(coluna, linha, v, janela_j, velmonstro, nave)
             contamove = 0
         contamove += 1
         
@@ -76,23 +83,28 @@ def jogo():
             conta2 = 0
             v = []
             totalpontos += total
-        
+
         
         # Finalizar jogo, se derrotado
-        if crash:
+        if crash or (lifes == 0):
                 background = Sprite("assets/fail.png")
                 mixer.music.load('assets/loss.mp3')
                 mixer.music.set_volume(0.2)
                 mixer.music.play()
+                funcoes.colocar_ranking(pontos)
+                listapontos = funcoes.translate("ranking.txt")
                 while True:
+                    
                     background.draw()
+                    funcoes.printaranking(listapontos,janela_altura, janela_largura, janela_j)
                     janela_j.update()
+
                     if teclado.key_pressed("ESC"):
                         janela_j.close()
 
 
-
-
+    
+        cooldown, lifes,invincible, countinvincible = funcoes.monstroatira(v, nave, vely, janela_j, cooldown, listatiro, lifes, invincible, countinvincible)
         if teclado.key_pressed("ESC"):
             janela_j.close()
         janela_j.update()

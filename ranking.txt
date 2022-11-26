@@ -1,0 +1,1 @@
+pedro:5;pedro:3;piter:1;pedro:0;piter:2;piter:1;pooioio:0;piter:2;piter:1;1231e:1;dasda:1;eirowi:0;sadfaew:1;asdasadw:1;asdaw:0;"C:/Program Files/Python310/python.exe" "d:/Faculdade/Projetos/Laboratório de Jogos/space-invaders/main.py":3;

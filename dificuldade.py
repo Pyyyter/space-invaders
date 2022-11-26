@@ -7,16 +7,16 @@ import menu
 
 
 
-def configuracoes(): 
+def configuracoes(width,height): 
     #janela_d
-    janela_d = Window(1280,720)
+    janela_d = Window(width,height)
     janela_d.set_background_color([8, 6, 42])
 
     #sprites
-    botao_easy = Sprite("assets\Facil.png")
-    botao_medium = Sprite("assets\Medio.png")
-    botao_hard = Sprite("assets\Dificil.png")
-    botao_back2 = Sprite("assets\Exit.png")
+    botao_easy = Sprite("assets/Facil.png")
+    botao_medium = Sprite("assets/Medio.png")
+    botao_hard = Sprite("assets/Dificil.png")
+    botao_back2 = Sprite("assets/Sair.png")
 
 
     botao_easy.set_position(janela_d.width/2 - botao_easy.width/2 - 545, 200)
@@ -35,6 +35,15 @@ def configuracoes():
         botao_medium.draw()
         botao_hard.draw()
         botao_back2.draw()
+
+        if click.is_button_pressed(True) and click.is_over_object(botao_easy):
+            return 0
+
+        if click.is_button_pressed(True) and click.is_over_object(botao_medium):
+            return 1
+
+        if click.is_button_pressed(True) and click.is_over_object(botao_hard):
+            return 2
 
         if click.is_button_pressed(True) and click.is_over_object(botao_back2):
             menu.inicio()
